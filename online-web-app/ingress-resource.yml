@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - "online.lnxadm.xyz"
-    secretName: wl-tls-secret
+    secretName: wc-tls-secret
   rules:
   - host: online.lnxadm.xyz
     http:
