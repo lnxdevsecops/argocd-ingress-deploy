@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service 
+metadata: 
+  name: login-svc
+spec: 
+  selector: 
+    app: login-web-app
+  type: ClusterIP 
+  ports: 
+  - port: 80 
+    targetPort: 80 

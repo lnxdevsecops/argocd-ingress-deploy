@@ -1,0 +1,63 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: login-web-app
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+  project: default
+  source:
+    repoURL: git@github.com:lnxdevsecops/argocd-ingress-deploy.git
+    targetRevision: HEAD
+    path: login-web-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: online-web-app
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+  project: default
+  source:
+    repoURL: git@github.com:lnxdevsecops/argocd-ingress-deploy.git
+    targetRevision: HEAD
+    path: online-web-app
+  destination:
+    server: https://kubernetes.default.svc
+    # namespace: votingapp
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argoapps
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+  project: default
+  source:
+    repoURL: git@github.com:lnxdevsecops/argocd-ingress-deploy.git
+    targetRevision: HEAD
+    path: ArgoApps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+
+#The above manifest can be deployed using echo '' | ku apply -f -

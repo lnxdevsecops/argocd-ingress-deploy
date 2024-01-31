@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: login-web-app
+spec: 
+  replicas: 3
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  selector: 
+    matchLabels: 
+      app: login-web-app
+  template: 
+    metadata: 
+      labels: 
+        app: login-web-app
+    spec:
+      containers: 
+      - name: login-web-app
+        image: lnxadm1991/login-web-app
+        ports: 
+        - containerPort: 80
